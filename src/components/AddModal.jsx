@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { formatYYYYMMDD, getCurrentDate } from "../utils/FormatDate";
+import { addTask, getTasks } from "../functions/functions";
+import { TaskContext } from "../pages/Tasks";
 
 function AddModal() {
+  const { toggleUpdateFlag } = useContext(TaskContext);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
 
@@ -20,7 +23,7 @@ function AddModal() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
     }
@@ -52,13 +55,12 @@ function AddModal() {
         due_date: task.due_date,
         created_at: task.created_at,
       };
-      const updatedTasks = [...tasks, newTask];
-      setTasks(updatedTasks);
-      localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
-      setTask("");
-      setError(""); // Clear error on successful submission
+      addTask(newTask);
+
+      setTask(""); // Clear input fields
+      setError(""); // Clear error
       handleClose();
-      window.location.reload();
+      toggleUpdateFlag(); // Update the task list
     } catch (error) {
       console.log(error);
     }

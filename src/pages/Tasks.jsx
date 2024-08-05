@@ -1,17 +1,27 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import TaskCard from "../components/TaskCard";
+import { getTasks } from "../functions/functions";
+import AddModal from "../components/AddModal";
+import DeleteAllModal from "../components/DeleteAllModal";
+import DoneAllModal from "../components/DoneAllModal";
+
+export const TaskContext = createContext();
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [sortCriteria, setSortCriteria] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
 
+  const [updateFlag, setUpdateFlag] = useState(false);
+
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
     }
-  }, []);
+  }, [updateFlag]);
+
+  const toggleUpdateFlag = () => setUpdateFlag(!updateFlag);
 
   const sortTasks = (tasks) => {
     return tasks.sort((a, b) => {
@@ -39,72 +49,80 @@ const Tasks = () => {
   };
 
   return (
-    <div className="">
-      <div className="task--cont">
-        <h5>To dos</h5>
-        <div className="filters--cont">
-          <label htmlFor="sort">Sort by: </label>
-          <div className="sort-order">
-            <div className="sort">
-              <div className="select--cont">
-                <select
-                  id="sort"
-                  value={sortCriteria}
-                  onChange={(e) => setSortCriteria(e.target.value)}
+    <TaskContext.Provider value={{ toggleUpdateFlag }}>
+      <div className="">
+        <div className="task--cont">
+          {/* <h5>To dos</h5> */}
+          <div className="menu--cont">
+            <AddModal />
+            <DoneAllModal />
+            <DeleteAllModal />
+          </div>
+          <div className="filters--cont">
+            {/* <label htmlFor="sort">Sort by: </label> */}
+            <div className="sort-order">
+              <div className="sort">
+                <div className="select--cont">
+                  <select
+                    id="sort"
+                    value={sortCriteria}
+                    onChange={(e) => setSortCriteria(e.target.value)}
+                  >
+                    <option value="name">Name</option>
+                    <option value="date">Due Date</option>
+                    <option value="id">ID</option>
+                  </select>
+                  <div className="select_arrow"></div>
+                </div>
+              </div>
+              <div className="order">
+                <button
+                  className="btn--order"
+                  onClick={() =>
+                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                  }
                 >
-                  <option value="name">Name</option>
-                  <option value="date">Due Date</option>
-                  <option value="id">ID</option>
-                </select>
-                <div className="select_arrow"></div>
+                  {sortOrder === "asc" ? (
+                    <span className="material-symbols-outlined">
+                      arrow_downward
+                    </span>
+                  ) : (
+                    <span className="material-symbols-outlined">
+                      arrow_upward
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
-            <div className="order">
-              <button
-                className="btn--order"
-                onClick={() =>
-                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-                }
-              >
-                {sortOrder === "asc" ? (
-                  <span className="material-symbols-outlined">
-                    arrow_downward
-                  </span>
+          </div>
+          <div className="tasks--cont">
+            <div className="list--cont">
+              <h6>Active</h6>
+              <div className="task-card-list">
+                {tasks.filter((task) => task.is_completed === 0).length ===
+                0 ? (
+                  <p className="message">No on-going tasks.</p>
                 ) : (
-                  <span className="material-symbols-outlined">
-                    arrow_upward
-                  </span>
+                  sortTasks(
+                    tasks.filter((task) => task.is_completed === 0)
+                  ).map((task) => <TaskCard key={task.id} task={task} />)
                 )}
-              </button>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="tasks--cont">
-          <div className="list--cont">
-            <h6>Active</h6>
-            <div className="task-card-list">
-              {tasks.filter((task) => task.is_completed === 0).length === 0 ? (
-                <p className="message">No on-going tasks.</p>
-              ) : (
-                sortTasks(tasks.filter((task) => task.is_completed === 0)).map(
-                  (task) => <TaskCard key={task.id} task={task} />
-                )
-              )}
-            </div>
-          </div>
-          <div className="list--cont">
-            <h6>Completed</h6>
-            <div className="task-card-list">
-              {tasks
-                .filter((task) => task.is_completed === 1)
-                .map((task) => (
-                  <TaskCard key={task.id} task={task} />
-                ))}
+            <div className="list--cont">
+              <h6>Completed</h6>
+              <div className="task-card-list">
+                {tasks
+                  .filter((task) => task.is_completed === 1)
+                  .map((task) => (
+                    <TaskCard key={task.id} task={task} />
+                  ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </TaskContext.Provider>
   );
 };
 

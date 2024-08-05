@@ -6,6 +6,7 @@
 @import "./task";
 @import "./icons";
 @import "./input";
+@import "./navbar";
 
 // Default styles
 *,
@@ -139,8 +140,10 @@ a,
 }
 
 Link,
-button {
+button,
+a {
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 .modal-anim {

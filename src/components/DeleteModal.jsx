@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { deleteTask, getTasks } from "../functions/functions";
+import { TaskContext } from "../pages/Tasks";
 
 function DeleteModal({ id }) {
+  const { toggleUpdateFlag } = useContext(TaskContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -10,7 +13,7 @@ function DeleteModal({ id }) {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
     }
@@ -18,10 +21,9 @@ function DeleteModal({ id }) {
 
   const handleDelete = async () => {
     try {
-      const updatedTasks = tasks.filter((task) => task.id !== id);
-      setTasks(updatedTasks);
-      localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
-      window.location.reload();
+      deleteTask(id);
+      // window.location.reload();
+      toggleUpdateFlag();
     } catch (error) {
       console.log(error);
     }

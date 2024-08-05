@@ -1,9 +1,16 @@
 .task--cont {
-  margin-left: 320px;
+  max-width: 1080px;
+  // margin-left: 320px;
+  margin-inline: auto;
   padding: 40px;
 
   h5 {
     margin-bottom: 1rem;
+  }
+
+  .menu--cont {
+    display: flex;
+    align-items: center;
   }
 
   .filters--cont {

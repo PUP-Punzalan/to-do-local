@@ -1,0 +1,30 @@
+.navbar--cont {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 40px;
+  color: $white-background-01;
+  background: rgb(94, 27, 136);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(94, 27, 136, 1) 0%,
+    rgba(244, 81, 44, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(94, 27, 136, 1) 0%,
+    rgba(244, 81, 44, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(94, 27, 136, 1) 0%,
+    rgba(244, 81, 44, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5e1b88",endColorstr="#f4512c",GradientType=1);
+
+  .logo-icon {
+    width: 28px;
+    filter: brightness(0) invert(1);
+  }
+}

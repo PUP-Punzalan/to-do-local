@@ -1,16 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/main.scss";
-
-import ToDo from "./pages/ToDo";
 import Tasks from "./pages/Tasks";
-import Sidebar from "./components/Sidebar";
+import "./styles/main.scss";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <div>
-      {/* <ToDo /> */}
-      <Sidebar />
-
+      <Navbar />
       <Tasks />
     </div>
   );

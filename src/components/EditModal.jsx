@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { formatYYYYMMDD } from "../utils/FormatDate";
+import { editTask, getTasks } from "../functions/functions";
+import { TaskContext } from "../pages/Tasks";
 
 function EditModal({ taskId }) {
+  const { toggleUpdateFlag } = useContext(TaskContext);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,7 +20,7 @@ function EditModal({ taskId }) {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
       const taskToEdit = localTasks.find((task) => task.id === taskId);
@@ -57,13 +60,9 @@ function EditModal({ taskId }) {
     }
 
     try {
-      const updatedTasks = tasks.map((t) =>
-        t.id === taskId ? { ...t, ...task } : t
-      );
-      setTasks(updatedTasks);
-      localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+      editTask(task);
       handleClose();
-      window.location.reload();
+      toggleUpdateFlag(); // Update the task list
     } catch (error) {
       console.log(error);
     }

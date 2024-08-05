@@ -1,26 +1,25 @@
 import PropTypes from "prop-types";
-import { formatMMMMDDYYYY } from "../utils/FormatDate";
+import { formatMMMMDDYYYY, getDayWord } from "../utils/FormatDate";
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { doneTask, getTasks } from "../functions/functions";
+import { TaskContext } from "../pages/Tasks";
 
 const TaskCard = ({ task }) => {
+  const { toggleUpdateFlag } = useContext(TaskContext);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
     }
   }, []);
 
   const handleComplete = (id) => {
-    const updatedTasks = tasks.map((t) =>
-      t.id === id ? { ...t, is_completed: t.is_completed === 1 ? 0 : 1 } : t
-    );
-    setTasks(updatedTasks);
-    localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
-    window.location.reload(); // Optional: reload to reflect changes
+    doneTask(id);
+    toggleUpdateFlag();
   };
 
   return (
@@ -75,7 +74,10 @@ const TaskCard = ({ task }) => {
             <span className="material-symbols-outlined c-icon-md">
               event_available
             </span>
-            <p className="sm">{formatMMMMDDYYYY(task.due_date)}</p>
+
+            <p className="sm">
+              {getDayWord(task.due_date)}, {formatMMMMDDYYYY(task.due_date)}
+            </p>
           </div>
         </div>
         <div className="side">

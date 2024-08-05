@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { doneAllTasks, getTasks } from "../functions/functions";
+import { TaskContext } from "../pages/Tasks";
 
 function DoneAllModal() {
+  const { toggleUpdateFlag } = useContext(TaskContext);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,21 +21,16 @@ function DoneAllModal() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem("localTasks"));
+    const localTasks = getTasks();
     if (localTasks) {
       setTasks(localTasks);
     }
   }, []);
 
   const handleDoneAll = () => {
-    const updatedTasks = tasks.map((task) => ({
-      ...task,
-      is_completed: 1, // Assuming 1 represents completed
-    }));
-    setTasks(updatedTasks);
-    localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+    doneAllTasks();
     handleClose();
-    window.location.reload(); // Optional: reload to reflect changes
+    toggleUpdateFlag();
   };
 
   return (
