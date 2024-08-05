@@ -53,6 +53,7 @@ function AddModal() {
         description: task.description,
         is_completed: task.is_completed,
         due_date: task.due_date,
+        due_time: task.due_time,
         created_at: task.created_at,
       };
       addTask(newTask);
@@ -103,6 +104,17 @@ function AddModal() {
               placeholder="Due Date"
               onChange={handleDateChange}
               value={task.due_date}
+            />
+          </div>
+          <div className="input--field">
+            <label htmlFor="due_time">Due Time</label>
+            <input
+              required
+              type="time"
+              name="due_time"
+              placeholder="Due Time"
+              onChange={handleChange}
+              value={task.due_time}
             />
           </div>
           <div className="input--field">

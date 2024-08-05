@@ -108,6 +108,16 @@ function EditModal({ taskId }) {
                 />
               </div>
               <div className="input--field">
+                <label htmlFor="due_time">Due Time</label>
+                <input
+                  type="time"
+                  name="due_time"
+                  placeholder="Due Date"
+                  onChange={handleChange}
+                  value={task.due_time}
+                />
+              </div>
+              <div className="input--field">
                 <label htmlFor="description">Description</label>
                 <textarea
                   name="description"

@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { doneTask, getTasks } from "../functions/functions";
 import { TaskContext } from "../pages/Tasks";
 import { toast } from "react-toastify";
+import { convertTime } from "../utils/FormatTime";
 
 const TaskCard = ({ task }) => {
   const { toggleUpdateFlag } = useContext(TaskContext);
@@ -80,6 +81,13 @@ const TaskCard = ({ task }) => {
               {getDayWord(task.due_date)}, {formatMMMMDDYYYY(task.due_date)}
             </p>
           </div>
+          <div className="due-time">
+            <span className="material-symbols-outlined c-icon-md">alarm</span>
+
+            <p className="sm">
+              {task.due_time ? convertTime(task.due_time) : "No time set"}
+            </p>
+          </div>
         </div>
         <div className="side">
           <p className="sm c-description">{task.description}</p>
@@ -103,6 +111,7 @@ TaskCard.propTypes = {
     description: PropTypes.string,
     is_completed: PropTypes.number.isRequired,
     due_date: PropTypes.string.isRequired,
+    due_time: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
   }).isRequired,
 };

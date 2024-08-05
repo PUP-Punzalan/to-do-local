@@ -54,7 +54,7 @@
   border: 1px solid $black-10;
   border-radius: 8px;
   min-width: 100px;
-  min-height: 230px;
+  min-height: 265px;
   // max-width: 400px;
   width: 100%;
   animation: fadeIn 0.3s ease-in-out 1 normal forwards;
@@ -99,6 +99,18 @@
     align-items: center;
     gap: 4px;
     color: $orange-dark;
+    margin-bottom: 4px;
+
+    p {
+      font-weight: 600;
+    }
+  }
+
+  .due-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: $black-50;
 
     p {
       font-weight: 600;
