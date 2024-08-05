@@ -2,9 +2,13 @@ import { toast } from "react-toastify";
 
 export const getTasks = () => {
   const localTasks = JSON.parse(localStorage.getItem("localTasks"));
-  if (localTasks) {
-    return localTasks;
+
+  if (!localTasks) {
+    localStorage.setItem("localTasks", JSON.stringify([]));
+    return [];
   }
+
+  return localTasks;
 };
 
 export const addTask = (task) => {
