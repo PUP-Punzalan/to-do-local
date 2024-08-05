@@ -1,7 +1,7 @@
 .navbar--cont {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
   padding: 16px 40px;
   color: $white-background-01;
@@ -26,5 +26,17 @@
   .logo-icon {
     width: 28px;
     filter: brightness(0) invert(1);
+  }
+
+  .navbar-title {
+    font-family: $ff-dm-sans;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 425px) {
+    .navbar-title {
+      display: none;
+    }
   }
 }

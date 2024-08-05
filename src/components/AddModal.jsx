@@ -70,7 +70,7 @@ function AddModal() {
     <>
       <button onClick={handleShow} className="c-btn c-btn-icon c-btn--primary">
         <span className="material-symbols-outlined">add</span>
-        <p>Add new task</p>
+        <p className="c-btn-label">Add new task</p>
       </button>
 
       <Modal className="modal-anim" show={show} onHide={handleClose}>

@@ -8,7 +8,7 @@ const Navbar = () => {
         alt="logo"
         className="logo-icon"
       />
-      <h5>LexDoIt</h5>
+      <span className="navbar-title">LexMeet To Do List</span>
     </a>
   );
 };

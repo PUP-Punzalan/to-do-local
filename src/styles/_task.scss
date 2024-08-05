@@ -13,7 +13,7 @@
 
 .task-card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
@@ -53,7 +53,7 @@
   background: $white-background-01;
   border: 1px solid $black-10;
   border-radius: 8px;
-  min-width: 320px;
+  min-width: 100px;
   min-height: 230px;
   // max-width: 400px;
   width: 100%;

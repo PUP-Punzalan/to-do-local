@@ -5,6 +5,7 @@ import EditModal from "./EditModal";
 import { useContext, useEffect, useState } from "react";
 import { doneTask, getTasks } from "../functions/functions";
 import { TaskContext } from "../pages/Tasks";
+import { toast } from "react-toastify";
 
 const TaskCard = ({ task }) => {
   const { toggleUpdateFlag } = useContext(TaskContext);

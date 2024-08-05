@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const getTasks = () => {
   const localTasks = JSON.parse(localStorage.getItem("localTasks"));
   if (localTasks) {
@@ -9,6 +11,7 @@ export const addTask = (task) => {
   const localTasks = getTasks();
   const updatedTasks = [...localTasks, task];
   localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("Task added successfully!");
 };
 
 export const editTask = (task) => {
@@ -17,12 +20,14 @@ export const editTask = (task) => {
     t.id === task.id ? { ...t, ...task } : t
   );
   localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("Task updated successfully!");
 };
 
 export const deleteTask = (taskId) => {
   const localTasks = getTasks();
   const updatedTasks = localTasks.filter((task) => task.id !== taskId);
   localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("Task deleted successfully!");
 };
 
 export const doneTask = (taskId) => {
@@ -33,6 +38,7 @@ export const doneTask = (taskId) => {
       : task
   );
   localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("Task updated successfully!");
 };
 
 export const doneAllTasks = () => {
@@ -42,8 +48,10 @@ export const doneAllTasks = () => {
     is_completed: 1,
   }));
   localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("All tasks completed successfully!");
 };
 
 export const deleteAllTasks = () => {
   localStorage.setItem("localTasks", JSON.stringify([]));
+  toast.success("All tasks deleted successfully!");
 };

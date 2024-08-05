@@ -37,7 +37,7 @@ function DoneAllModal() {
     <>
       <button onClick={handleShow} className="c-btn c-btn-icon c-btn--suceess">
         <span className="material-symbols-outlined">check</span>
-        <p>Done all</p>
+        <p className="c-btn-label">Done all</p>
       </button>
 
       <Modal className="modal-anim" show={show} onHide={handleClose}>

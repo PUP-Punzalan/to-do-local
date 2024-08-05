@@ -3,12 +3,25 @@
   align-items: center;
   gap: 0.5rem;
   padding: 12px 20px;
-  width: 100%;
+  // width: 100%;
+  flex: 1;
   transition: filter 0.3s ease-in-out;
   border-radius: 8px;
+  min-width: fit-content;
 
   &:hover {
     filter: brightness(0.9);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .c-btn {
+    padding: 12px;
+    justify-content: center;
+  }
+
+  .c-btn-label {
+    display: none;
   }
 }
 

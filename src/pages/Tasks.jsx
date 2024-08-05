@@ -4,6 +4,7 @@ import { getTasks } from "../functions/functions";
 import AddModal from "../components/AddModal";
 import DeleteAllModal from "../components/DeleteAllModal";
 import DoneAllModal from "../components/DoneAllModal";
+import { ToastContainer } from "react-toastify";
 
 export const TaskContext = createContext();
 
@@ -50,6 +51,19 @@ const Tasks = () => {
 
   return (
     <TaskContext.Provider value={{ toggleUpdateFlag }}>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <div className="">
         <div className="task--cont">
           {/* <h5>To dos</h5> */}

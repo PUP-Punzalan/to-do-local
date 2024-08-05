@@ -29,7 +29,7 @@ function DeleteAllModal({ id }) {
     <>
       <button onClick={handleShow} className="c-btn c-btn-icon c-btn--danger">
         <span className="material-symbols-outlined">delete</span>
-        <p>Delete all</p>
+        <p className="c-btn-label">Delete all</p>
       </button>
 
       <Modal className="modal-anim" show={show} onHide={handleClose}>
