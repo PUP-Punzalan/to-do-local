@@ -24,8 +24,19 @@ const TaskCard = ({ task }) => {
     toggleUpdateFlag();
   };
 
+  const dateTimeConverter = (date, time) => {
+    const [year, month, day] = date.split("-").map(Number);
+    const [hour, minute] = time.split(":").map(Number);
+
+    const combinedDate = new Date(year, month - 1, day, hour, minute);
+    return combinedDate;
+  };
+
   const isTaskDue =
-    new Date(task.due_date) < new Date() && task.is_completed === 0;
+    dateTimeConverter(task.due_date, task.due_time) < new Date() &&
+    task.is_completed === 0;
+
+  console.log(new Date(task.due_date));
 
   return (
     <div className="task-card--cont">
