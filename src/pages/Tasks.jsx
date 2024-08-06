@@ -5,6 +5,7 @@ import AddModal from "../components/AddModal";
 import DeleteAllModal from "../components/DeleteAllModal";
 import DoneAllModal from "../components/DoneAllModal";
 import { ToastContainer } from "react-toastify";
+import UndoneAllModal from "../components/UndoneAllModal";
 
 export const TaskContext = createContext();
 
@@ -71,6 +72,7 @@ const Tasks = () => {
             <AddModal />
             <DoneAllModal />
             <DeleteAllModal />
+            <UndoneAllModal />
           </div>
           <div className="filters--cont">
             {/* <label htmlFor="sort">Sort by: </label> */}

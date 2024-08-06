@@ -55,6 +55,16 @@ export const doneAllTasks = () => {
   toast.success("All tasks completed successfully!");
 };
 
+export const undoneAllTask = () => {
+  const localTasks = getTasks();
+  const updatedTasks = localTasks.map((task) => ({
+    ...task,
+    is_completed: 0,
+  }));
+  localStorage.setItem("localTasks", JSON.stringify(updatedTasks));
+  toast.success("All tasks marked as incomplete successfully!");
+};
+
 export const deleteAllTasks = () => {
   localStorage.setItem("localTasks", JSON.stringify([]));
   toast.success("All tasks deleted successfully!");
