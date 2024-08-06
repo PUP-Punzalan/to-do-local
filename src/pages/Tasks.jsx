@@ -10,7 +10,7 @@ export const TaskContext = createContext();
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
-  const [sortCriteria, setSortCriteria] = useState("name");
+  const [sortCriteria, setSortCriteria] = useState("date");
   const [sortOrder, setSortOrder] = useState("asc");
 
   const [updateFlag, setUpdateFlag] = useState(false);
@@ -82,8 +82,8 @@ const Tasks = () => {
                     value={sortCriteria}
                     onChange={(e) => setSortCriteria(e.target.value)}
                   >
-                    <option value="name">Name</option>
                     <option value="date">Due Date</option>
+                    <option value="name">Name</option>
                     <option value="id">ID</option>
                   </select>
                   <div className="select_arrow"></div>

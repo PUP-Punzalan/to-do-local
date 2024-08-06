@@ -24,21 +24,37 @@ const TaskCard = ({ task }) => {
     toggleUpdateFlag();
   };
 
+  const isTaskDue =
+    new Date(task.due_date) < new Date() && task.is_completed === 0;
+
   return (
     <div className="task-card--cont">
+      <div
+        className={`status ${isTaskDue ? "status-due" : "status-on-time"}`}
+      ></div>
       <div className="side">
         <div className="inside">
           <div className="title">
-            <h6
-              className="c-title"
-              style={{
-                textDecoration:
-                  task.is_completed === 1 ? "line-through" : "none",
-                color: task.is_completed === 1 ? "gray" : "black",
-              }}
-            >
-              {task.title}
-            </h6>
+            <div className="title-h6">
+              {isTaskDue && (
+                <span
+                  title="This task is overdue"
+                  className="material-symbols-outlined clr-orange"
+                >
+                  warning
+                </span>
+              )}
+              <h6
+                className="c-title"
+                style={{
+                  textDecoration:
+                    task.is_completed === 1 ? "line-through" : "none",
+                  color: task.is_completed === 1 ? "gray" : "black",
+                }}
+              >
+                {task.title}
+              </h6>
+            </div>
             <div className="checkbox-wrapper-12">
               <div className="cbx">
                 <input
