@@ -22,7 +22,6 @@ function DeleteModal({ id }) {
   const handleDelete = async () => {
     try {
       deleteTask(id);
-      // window.location.reload();
       toggleUpdateFlag();
     } catch (error) {
       console.log(error);

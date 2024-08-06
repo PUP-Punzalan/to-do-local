@@ -21,10 +21,6 @@
   box-sizing: border-box;
 }
 
-// html {
-//   color: $black-foreground-01;
-// }
-
 body {
   background-color: $white-background-02;
   color: $black-foreground-01;
@@ -155,22 +151,8 @@ a {
 }
 
 .modal-anim {
-  // background: #000 !important;
-  // color: red;
   animation: entrance 0.4s ease-in-out 0s 1 normal forwards;
 }
-
-// @keyframes entrance {
-//   0% {
-//     opacity: 0;
-//     transform: translateY(-250px);
-//   }
-
-//   100% {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
 
 .clr-orange {
   color: $orange-dark;
