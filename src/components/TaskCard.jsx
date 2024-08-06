@@ -61,7 +61,7 @@ const TaskCard = ({ task }) => {
                   color:
                     task.is_completed === 1
                       ? "rgba(33, 36, 39, 0.5)"
-                      : "rgba(33, 36, 39, 1)",
+                      : "#5e1b88",
                 }}
               >
                 {task.title}
