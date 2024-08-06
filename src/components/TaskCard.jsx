@@ -36,8 +36,6 @@ const TaskCard = ({ task }) => {
     dateTimeConverter(task.due_date, task.due_time) < new Date() &&
     task.is_completed === 0;
 
-  console.log(new Date(task.due_date));
-
   return (
     <div className="task-card--cont">
       <div

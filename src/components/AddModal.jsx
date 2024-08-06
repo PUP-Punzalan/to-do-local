@@ -20,8 +20,14 @@ function AddModal() {
   });
   const [tasks, setTasks] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    console.log("Closing modal");
+    setShow(false);
+  };
+  const handleShow = () => {
+    console.log("Opening modal");
+    setShow(true);
+  };
 
   useEffect(() => {
     const localTasks = getTasks();
@@ -57,7 +63,6 @@ function AddModal() {
         due_time: task.due_time,
         created_at: task.created_at,
       };
-      console.log("Task being added:", newTask);
       addTask(newTask);
 
       setTask({
