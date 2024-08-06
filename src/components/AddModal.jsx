@@ -96,7 +96,7 @@ function AddModal() {
         </Modal.Header>
         <Modal.Body>
           {error && (
-            <p style={{ color: "red", marginBottom: "16px" }}>{error}</p>
+            <p style={{ color: "#f4512c", marginBottom: "16px" }}>{error}</p>
           )}{" "}
           <div className="input--field">
             <label htmlFor="title">Title</label>
