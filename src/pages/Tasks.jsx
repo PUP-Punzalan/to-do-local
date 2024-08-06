@@ -71,8 +71,8 @@ const Tasks = () => {
           <div className="menu--cont">
             <AddModal />
             <DoneAllModal />
-            <DeleteAllModal />
             <UndoneAllModal />
+            <DeleteAllModal />
           </div>
           <div className="filters--cont">
             {/* <label htmlFor="sort">Sort by: </label> */}
