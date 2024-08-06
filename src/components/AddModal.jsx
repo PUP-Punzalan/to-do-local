@@ -15,6 +15,7 @@ function AddModal() {
     description: "",
     is_completed: 0,
     due_date: "",
+    due_time: "",
     created_at: getCurrentDate(),
   });
   const [tasks, setTasks] = useState([]);
@@ -41,14 +42,14 @@ function AddModal() {
     e.preventDefault();
 
     // Validation check
-    if (!task.title || !task.description || !task.due_date) {
+    if (!task.title || !task.description || !task.due_date || !task.due_time) {
       setError("All fields must be filled out.");
       return;
     }
 
     try {
       const newTask = {
-        id: tasks.length + 1,
+        id: crypto.randomUUID(),
         title: task.title,
         description: task.description,
         is_completed: task.is_completed,
@@ -56,9 +57,17 @@ function AddModal() {
         due_time: task.due_time,
         created_at: task.created_at,
       };
+      console.log("Task being added:", newTask);
       addTask(newTask);
 
-      setTask(""); // Clear input fields
+      setTask({
+        title: "",
+        description: "",
+        is_completed: 0,
+        due_date: "",
+        due_time: "",
+        created_at: getCurrentDate(), // You can use the same function to reset
+      }); // Clear input fields
       setError(""); // Clear error
       handleClose();
       toggleUpdateFlag(); // Update the task list

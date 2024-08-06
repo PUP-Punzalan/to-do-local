@@ -8,6 +8,10 @@
 @import "./input";
 @import "./navbar";
 
+:root {
+  --toastify-color-success: #5e1b88 !important;
+}
+
 // Default styles
 *,
 *::before,

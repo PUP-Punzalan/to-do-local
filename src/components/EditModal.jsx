@@ -77,7 +77,7 @@ function EditModal({ taskId }) {
       <Modal className="modal-anim" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            <h5>Edit task {task && task.id}</h5>
+            <h5>Edit task</h5>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
