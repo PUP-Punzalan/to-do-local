@@ -58,7 +58,10 @@ const TaskCard = ({ task }) => {
                 style={{
                   textDecoration:
                     task.is_completed === 1 ? "line-through" : "none",
-                  color: task.is_completed === 1 ? "gray" : "black",
+                  color:
+                    task.is_completed === 1
+                      ? "rgba(33, 36, 39, 0.5)"
+                      : "rgba(33, 36, 39, 1)",
                 }}
               >
                 {task.title}
