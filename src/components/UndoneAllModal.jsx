@@ -36,8 +36,8 @@ function UndoneAllModal() {
   return (
     <>
       <button onClick={handleShow} className="c-btn c-btn-icon c-btn--primary">
-        <span className="material-symbols-outlined">check</span>
-        <p className="c-btn-label">Undone all</p>
+        <span className="material-symbols-outlined">cached</span>
+        <p className="c-btn-label">Undone all tasks</p>
       </button>
 
       <Modal className="modal-anim" show={show} onHide={handleClose}>
